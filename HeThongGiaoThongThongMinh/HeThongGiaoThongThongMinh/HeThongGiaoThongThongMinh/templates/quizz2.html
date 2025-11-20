@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trắc Nghiệm Xe Máy Nâng Cao</title>
+    <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- CSS của dự án -->
+<link rel="stylesheet" href="css/home.css">
+
+<!-- Bootstrap JS (để dropdown hoạt động) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/quizz.css') }}" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" 
+        rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/vendor.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/home.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold fs-4" href="{{ url_for('home') }}">HTNDBBGTTM</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">NHẬN DẠNG</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('nhandien') }}">Quét Biển Báo</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">BIỂN BÁO</a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ url_for('bienbaocam') }}" class="dropdown-item">Biển Báo Cấm</a></li>
+            <li><a href="{{ url_for('bbnguyhiem') }}" class="dropdown-item">Biển Báo Nguy Hiểm</a></li>
+            <li><a href="{{ url_for('bbhieulenh') }}" class="dropdown-item">Biển Báo Hiệu Lệnh</a></li>
+            <li><a href="{{ url_for('bbchidan') }}" class="dropdown-item">Biển Báo Chỉ Dẫn và biển báo phụ</a></li>
+            <li><a href="{{ url_for('vkd') }}" class="dropdown-item">Vạch Kẻ Đường</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">TRẮC NGHIỆM</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('quizz') }}">Trắc Nghiệm Xe Máy Cơ Bản</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('quizz2') }}">Trắc Nghiệm Xe Máy Nâng Cao</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('quizz3') }}">Trắc Nghiệm Ô Tô Cơ Bản</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('quizz4') }}">Trắc Nghiệm Ô Tô Nâng Cao</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">ĐIỀU LUẬT & MỨC PHẠT</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('dieuluat') }}">Các Điều Luật</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('mucphat') }}">Mức Phạt Phổ Biến</a></li>
+          </ul>
+        </li>
+
+       
+
+      </ul> 
+    </div>
+  </div>
+</nav>
+
+<section class="quiz-section">
+  <h1>🛑 Kiểm Tra Kiến Thức Giao Thông 🛵</h1>
+  <p>Chọn đáp án đúng nhất cho mỗi câu hỏi bên dưới. Sau đó bấm “Nộp bài” để xem kết quả của bạn!</p>
+
+  <form id="quizForm">
+    <div id="quizContainer"></div>
+    <button type="button" id="submitBtn">Nộp bài</button>
+    <div id="result"></div>
+  </form>
+</section>
+
+<footer>
+  <p>© 2025 Hệ Thống Nhận Diện Biển Báo Giao Thông Thông Minh</p>
+</footer>
+
+<script>
+  
+  const questions = [
+    { q: "1. Khi vượt xe khác, xe trước bật xi-nhan trái, bạn:", 
+      options: ["A. Vượt bên phải.", "B. Tiếp tục vượt trái.", "C. Giảm tốc, chờ xe đó rẽ xong."],
+      correct: 2 },
+
+    { q: "2. Xe mô tô trên 175cc cần bằng:",
+      options: ["A. A1", "B. A2", "C. A3"],
+      correct: 1 },
+
+    { q: "3. Khi đổ đèo, nên đi số:",
+      options: ["A. Số cao.", "B. Số Thấp.", "C. Về mo."],
+      correct: 1 },
+
+    { q: "4. Khi bị xe sau xin vượt, bạn:",
+      options: ["A. Giảm tốc, nhường.", "B. Tăng tốc tránh bị vượt.", "C. Chạy giữa đường."],
+      correct: 0 },
+
+    { q: "5. Khi vào cua trơn, nên:",
+      options: ["A. Phanh Gấp", "B. Giảm ga, đánh lái nhẹ. ", "C. Tăng Tốc Để Qua Nhanh."],
+      correct: 1 },
+
+    { q: "6. Biển “Đường dành cho mô tô” có dạng:",
+      options: ["A. Vuông xanh, hình xe máy trắng.", "B. Tròn đỏ, hình xe máy đen.", "C. Tam giác vàng."],
+      correct: 0 },
+
+    { q: "7. Khi vượt xe tải dài, nên:",
+      options: ["A. Giữ khoảng cách, vượt dứt khoát.", "B. Đi sát hông xe.", "C. Vượt ở khúc cua."],
+      correct: 0 },
+
+    { q: "8. Tốc độ tối đa ngoài khu dân cư của xe máy là:",
+      options: ["A. 50 km/h", "B. 60 km/h", "C. 70 km/h"],
+      correct: 1 },
+
+    { q: "9. Khi đi trong hầm, cần:",
+      options: ["A. Bật đèn chiếu sáng.", "B. Bấm còi..", "C. Tắt máy trôi ."],
+      correct: 0 },
+
+    { q: "10. Khi gặp xe ưu tiên, bạn:",
+      options: ["A. Dừng lại giữa đường.", "B. Giảm tốc, né sang phải.", "C. Đi bình thường."],
+      correct: 1 },
+
+    { q: "11. Khi dừng xe nên :",
+      options: ["A. Dừng sát lề phải.", "B. Dừng giửa đường.", "C. Dừng ở vạch người đi bộ."],
+      correct: 0 },
+
+    { q: "12. Khi qua ngã tư không đèn bạn nên :",
+      options: ["A. Nhường bên phải.", "B. Còi đi trước.", "C. tăng tốc vượt nhanh."],
+      correct: 0 },
+
+    { q: "13. Khi tránh xe đi ngược chiề, bạn:",
+      options: ["A. Đi sát lề phải", "B. giữ giữa Đường.", "C.Tăng tốc vượt nhanh."],
+      correct: 0},
+
+    { q: "14. Xe đang xuống dốc, tuyệt đối không:",
+      options: ["A. Về mo.", "B. Đi số thấp.", "C. Giữ phanh nhẹ."],
+      correct: 0 },
+
+    { q: "15. Khi dừng đèn đỏ, người ngồi sau phải",
+      options: ["A. Xuống xe .", "B. Ngồi Yên không chống chân.", "C. Chống chân xuống đất."],
+      correct: 2 }
+  ];
+
+  const quizContainer = document.getElementById("quizContainer");
+
+ questions.forEach((q, index) => {
+  const div = document.createElement("div");
+  div.className = "question mb-3 p-3 border rounded";
+  div.innerHTML = `<h5>${q.q}</h5>` + q.options.map(
+    (opt, i) => `
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="q${index}" id="q${index}_opt${i}" value="${i}">
+        <label class="form-check-label" for="q${index}_opt${i}">${opt}</label>
+      </div>
+    `
+  ).join("");
+  quizContainer.appendChild(div);
+});
+
+document.getElementById("submitBtn").onclick = () => {
+  let score = 0;
+  const allQuestions = document.querySelectorAll(".question");
+
+  questions.forEach((q, i) => {
+    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+    const labels = allQuestions[i].querySelectorAll("label");
+
+    // Xóa highlight cũ
+    labels.forEach(label => {
+      label.classList.remove("bg-success", "bg-danger", "text-white");
+    });
+
+    if (selected) {
+      labels.forEach((label, idx) => {
+        if (idx === q.correct) label.classList.add("bg-success", "text-white"); // đáp án đúng
+        if (parseInt(selected.value) === idx && idx !== q.correct) label.classList.add("bg-danger", "text-white"); // chọn sai
+      });
+
+      if (parseInt(selected.value) === q.correct) score++;
+    }
+  });
+
+  const result = document.getElementById("result");
+  result.innerHTML = `<h4>Bạn đúng ${score}/${questions.length} câu!</h4>
+                      <button id="resetBtn" class="btn btn-secondary mt-2">Làm lại</button>`;
+  result.style.display = "block";
+
+  document.getElementById("resetBtn").onclick = resetQuiz;
+
+  window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+};
+
+// Reset quiz
+function resetQuiz() {
+  const labels = document.querySelectorAll("label");
+  labels.forEach(l => l.classList.remove("bg-success", "bg-danger", "text-white"));
+
+  const radios = document.querySelectorAll("input[type=radio]");
+  radios.forEach(r => r.checked = false);
+
+  document.getElementById("result").style.display = "none";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+</script>
+
+
+</body>
+</html>

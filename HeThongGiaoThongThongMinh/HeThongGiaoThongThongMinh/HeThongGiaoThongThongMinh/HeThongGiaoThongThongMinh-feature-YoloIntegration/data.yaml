@@ -1,0 +1,58 @@
+train: datasets/train/images
+val: datasets/val/images
+test: datasets/test/images
+
+nc: 52
+names:
+  - Bus Stop
+  - Children Present
+  - Customs Checkpoint
+  - Danger zone on the left
+  - Danger zone on the right
+  - Double curve first to right
+  - Equal-level Intersection
+  - Height Limit
+  - Intersection
+  - Intersection with T-Junction
+  - Intersection with a non-priority road
+  - Lane Allocation
+  - Left Turn
+  - Level Crossing with Barriers
+  - Low Clearance
+  - Motorcycles Only
+  - Narrow Road on the Left
+  - Narrow Road on the Right
+  - No Cars Allowed
+  - No Containers Allowed
+  - No Entry
+  - No Left Turn
+  - No Left or Right Turn
+  - No Motorcycles Allowed
+  - No Parking
+  - No Passenger Cars and Trucks
+  - No Right Turn
+  - No Stopping and No Parking
+  - No Straight and Right Turn
+  - No Trucks Allowed
+  - No Two or Three-wheeled Vehicles
+  - No U-Turn
+  - No U-Turn and No Left Turn
+  - No U-Turn and No Right Turn
+  - No U-Turn for Cars
+  - Obstacle on the Road
+  - One-way Street
+  - Other Danger
+  - Pedestrian Crossing
+  - Right Turn Only
+  - Road with Surveillance Camera
+  - Roundabout
+  - Slow Down
+  - Speed limit (40km/h)
+  - Speed limit (50km/h)
+  - Speed limit (60km/h)
+  - Speed limit (80km/h)
+  - Trucks Only
+  - Trucks and Containers
+  - U-Turn Allowed
+  - Uneven Road
+  - Warning: Obstacle ahead – pass on the right

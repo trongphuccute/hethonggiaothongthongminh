@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mức Phạt Giao Thông Phổ Biến 2025</title>
+    <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- CSS của dự án -->
+<link rel="stylesheet" href="css/home.css">
+
+<!-- Bootstrap JS (để dropdown hoạt động) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+      padding: 40px 0;
+    }
+    h1 {
+      text-align: center;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 30px;
+      letter-spacing: 1.3px;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .container {
+      max-width: 1400px;
+      background: white;
+      border-radius: 20px;
+      padding: 30px 30px 40px 30px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+    .table thead th {
+      background-color: #0d6efd;
+      color: white;
+      vertical-align: middle;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+    .table tbody td {
+      vertical-align: middle;
+      font-size: 1.05rem;
+    }
+    .table tbody tr:hover {
+      background-color: #e7f1ff;
+    }
+    caption {
+      caption-side: bottom;
+      margin-top: 12px;
+      font-style: italic;
+      color: #666;
+      font-size: 0.9rem;
+    }
+     .title-bienbaocam {
+  margin-top: 100px;
+  text-align: center;
+  font-weight: bold;
+}
+  </style>
+</head>
+<body>
+     <!-- THANH ĐIỀU HƯỚNG -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold fs-4" href="{{ url_for('home') }}">HTNDBBGTTM</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        
+        <!-- NHẬN DẠNG -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="nhanDangDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">NHẬN DẠNG</a>
+          <ul class="dropdown-menu" aria-labelledby="nhanDangDropdown">
+            <li><a class="dropdown-item" href="{{ url_for('nhandien') }}">Quét Biển Báo</a></li>
+          </ul>
+        </li>
+
+        <!-- BIỂN BÁO -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="bienBaoDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">BIỂN BÁO</a>
+          <ul class="dropdown-menu" aria-labelledby="bienBaoDropdown">
+            <li><a href="{{ url_for('bienbaocam') }}" class="dropdown-item">Biển Báo Cấm</a></li>
+            <li><a href="{{ url_for('bbnguyhiem') }}" class="dropdown-item">Biển Báo Nguy Hiểm</a></li>
+            <li><a href="{{ url_for('bbhieulenh') }}" class="dropdown-item">Biển Báo Hiệu Lệnh</a></li>
+            <li><a href="{{ url_for('bbchidan') }}" class="dropdown-item">Biển Báo Chỉ Dẫn và biển báo phụ</a></li>
+            <li><a href="{{ url_for('vkd') }}" class="dropdown-item">Vạch Kẻ Đường</a></li>
+          </ul>
+        </li>
+
+        <!-- TRẮC NGHIỆM -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="tracNghiemDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">TRẮC NGHIỆM</a>
+          <ul class="dropdown-menu" aria-labelledby="tracNghiemDropdown">
+            <li><a class="dropdown-item" href="{{ url_for('quizz') }}">Trắc Nghiệm Xe Máy Cơ Bản</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('quizz2') }}">Trắc Nghiệm Xe Máy Nâng Cao</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('quizz3') }}">Trắc Nghiệm Ô Tô Cơ Bản</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('quizz4') }}">Trắc Nghiệm Ô Tô Nâng Cao</a></li>
+          </ul>
+        </li>
+
+        <!-- ĐIỀU LUẬT & MỨC PHẠT -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="mucPhatDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">ĐIỀU LUẬT & MỨC PHẠT</a>
+          <ul class="dropdown-menu" aria-labelledby="mucPhatDropdown">
+            <li><a class="dropdown-item" href="{{ url_for('dieuluat') }}">Các Điều Luật</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('mucphat') }}">Mức Phạt Phổ Biến</a></li>
+          </ul>
+        </li>
+
+        
+
+      </ul>
+    </div>
+  </div>
+</nav>
+  <h1 class="title-bienbaocam">Mức Phạt Giao Thông Phổ Biến 2025</h1>
+  <div class="container">
+    <table class="table table-bordered table-hover align-middle text-nowrap">
+      <thead>
+        <tr>
+          <th scope="col">Mức Phạt Phổ Biến</th>
+          <th scope="col">Xe Máy (VNĐ)</th>
+          <th scope="col">Ô Tô (VNĐ)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Chạy quá tốc độ 5-10 km/h</td><td class="text-end">400.000 - 600.000</td><td class="text-end">800.000 - 1.000.000</td></tr>
+        <tr><td>Chạy quá tốc độ 10-20 km/h</td><td class="text-end">800.000 - 1.000.000</td><td class="text-end">4.000.000 - 6.000.000</td></tr>
+        <tr><td>Chạy quá tốc độ trên 20 km/h</td><td class="text-end">6.000.000 - 8.000.000</td><td class="text-end">6.000.000 - 8.000.000</td></tr>
+        <tr><td>Vượt đèn đỏ</td><td class="text-end">4.000.000 - 6.000.000</td><td class="text-end">20.000.000 - 22.000.000</td></tr>
+        <tr><td>Đi sai làn đường</td><td class="text-end">600.000 - 800.000</td><td class="text-end">800.000 - 1.000.000</td></tr>
+        <tr><td>Không đội mũ bảo hiểm/Không thắt dây an toàn</td><td class="text-end">400.000 - 600.000</td><td class="text-end">Không thắt dây an toàn: 800.000 - 1.000.000</td></tr>
+        <tr><td>Sử dụng điện thoại khi lái xe</td><td class="text-end">800.000 - 1.000.000</td><td class="text-end">4.000.000 - 6.000.000</td></tr>
+        <tr><td>Đi ngược chiều</td><td class="text-end">4.000.000 - 6.000.000</td><td class="text-end">4.000.000 - 6.000.000</td></tr>
+        <tr><td>Chở quá số người quy định</td><td class="text-end">400.000 - 600.000</td><td class="text-end">Phạt theo số người vượt quá, vài triệu</td></tr>
+        <tr><td>Dừng, đỗ xe không đúng nơi quy định</td><td class="text-end">400.000 - 600.000</td><td class="text-end">800.000 - 1.200.000</td></tr>
+        <tr><td>Không mang giấy tờ xe</td><td class="text-end">200.000 - 300.000</td><td class="text-end">500.000 - 1.000.000</td></tr>
+        <tr><td>Không có giấy phép lái xe</td><td class="text-end">2.000.000 - 3.000.000</td><td class="text-end">4.000.000 - 6.000.000</td></tr>
+        <tr><td>Vượt phải nơi cấm</td><td class="text-end">400.000 - 600.000</td><td class="text-end">800.000 - 1.200.000</td></tr>
+        <tr><td>Đi xe trên vỉa hè</td><td class="text-end">4.000.000 - 6.000.000</td><td class="text-end">Không áp dụng</td></tr>
+        <tr><td>Không gương chiếu hậu</td><td class="text-end">400.000 - 600.000</td><td class="text-end">800.000 - 1.200.000</td></tr>
+        <tr><td>Không bật đèn xi nhan khi chuyển hướng</td><td class="text-end">600.000 - 800.000</td><td class="text-end">800.000 - 1.200.000</td></tr>
+        <tr><td>Điều khiển xe gây tai nạn</td><td class="text-end">10.000.000 - 14.000.000</td><td class="text-end">20.000.000 - 22.000.000</td></tr>
+        <tr><td>Đua xe trái phép</td><td class="text-end">8.000.000 - 10.000.000 + Tịch thu xe</td><td class="text-end">12.000.000 - 14.000.000 + Tịch thu xe</td></tr>
+        <tr><td>Không tuân thủ hiệu lệnh CSGT</td><td class="text-end">3.000.000 - 5.000.000</td><td class="text-end">5.000.000 - 7.000.000</td></tr>
+      </tbody>
+    </table>
+    <caption>Mức phạt áp dụng theo Luật giao thông đường bộ Việt Nam năm 2025.</caption>
+  </div>
+</body>
+</html>

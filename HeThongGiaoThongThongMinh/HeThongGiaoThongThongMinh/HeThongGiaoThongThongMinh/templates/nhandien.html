@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nhận diện biển báo giao thông</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body {
+      background: linear-gradient(180deg, #f7f9fb, #eef2f6);
+      font-family: 'Segoe UI', sans-serif;
+      padding-top: 90px;
+    }
+    .title-bienbaocam {
+      text-align: center;
+      color: #2b3a67;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .btn {
+      border-radius: 25px;
+      padding: 10px 25px;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    footer {
+      text-align: center;
+      color: gray;
+      margin-top: 40px;
+    }
+    #cameraWrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    #cameraStream {
+      display: none;
+      width: 400px;
+      height: 400px;
+      object-fit: contain;
+      background-color: #f0f0f0;
+      border-radius: 20px;
+      border: 3px solid #007bff;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.5s ease-in-out;
+    }
+    #closeCamBtn {
+      display: none;
+      margin-top: 15px;
+      border-radius: 25px;
+    }
+    .result-section {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .result-img, .result-stream-video {
+      display: block;
+      width: 400px;
+      height: 400px;
+      object-fit: contain;
+      background-color: #f0f0f0;
+      border-radius: 20px;
+      border: 3px solid #28a745;
+      margin: 0 auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      transition: all 0.5s ease-in-out;
+    }
+    .result-video {
+      display: none; /* Ẩn tag video */
+      width: 400px;
+      height: 400px;
+      margin: 20px auto 0 auto;
+      border-radius: 20px;
+      border: 3px solid #28a745;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      background-color: #000;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold fs-4" href="{{ url_for('home') }}">HTNDBBGTTM</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">NHẬN DẠNG</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('nhandien') }}">Quét Biển Báo</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">BIỂN BÁO</a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ url_for('bienbaocam') }}" class="dropdown-item">Biển Báo Cấm</a></li>
+            <li><a href="{{ url_for('bbnguyhiem') }}" class="dropdown-item">Biển Báo Nguy Hiểm</a></li>
+            <li><a href="{{ url_for('bbhieulenh') }}" class="dropdown-item">Biển Báo Hiệu Lệnh</a></li>
+            <li><a href="{{ url_for('bbchidan') }}" class="dropdown-item">Biển Báo Chỉ Dẫn và biển báo phụ</a></li>
+            <li><a href="{{ url_for('vkd') }}" class="dropdown-item">Vạch Kẻ Đường</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">TRẮC NGHIỆM</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('quizz') }}">Trắc Nghiệm Xe Máy Cơ Bản</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('quizz2') }}">Trắc Nghiệm Xe Máy Nâng Cao</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('quizz3') }}">Trắc Nghiệm Ô Tô Cơ Bản</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('quizz4') }}">Trắc Nghiệm Ô Tô Nâng Cao</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">ĐIỀU LUẬT & MỨC PHẠT</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ url_for('dieuluat') }}">Các Điều Luật</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('mucphat') }}">Mức Phạt Phổ Biến</a></li>
+          </ul>
+        </li>
+
+       
+      </ul> 
+    </div>
+  </div>
+</nav>
+
+ 
+  <!-- TIÊU ĐỀ -->
+  <h1 class="title-bienbaocam">🚗 HỆ THỐNG NHẬN DIỆN BIỂN BÁO GIAO THÔNG</h1>
+
+  <!-- NÚT TẢI -->
+  <div class="text-center">
+    <button id="openCamBtn" class="btn btn-primary btn-lg me-3">📷 Mở Camera</button>
+    <button id="uploadImgBtn" class="btn btn-success btn-lg me-3">🖼️ Tải Ảnh Lên</button>
+    <button id="uploadVideoBtn" class="btn btn-warning btn-lg">🎥 Tải Video Lên</button>
+    <input type="file" id="fileInput" accept="image/*,video/*" style="display:none" />
+  </div>
+
+  <!-- CAMERA -->
+  <div id="cameraWrapper">
+    <img id="cameraStream" alt="Video sẽ hiển thị ở đây" />
+    <button id="closeCamBtn" class="btn btn-danger btn-lg">❌ Tắt Camera</button>
+  </div>
+
+  <!-- HIỂN THỊ ẢNH KẾT QUẢ -->
+  <div class="result-section" id="imageResultSection" style="display:none;">
+    <h4>🔍 Kết quả nhận diện ảnh:</h4>
+    <img id="resultImage" class="result-img" alt="Ảnh đã tải lên" />
+  </div>
+
+  <!-- HIỂN THỊ VIDEO STREAM KẾT QUẢ TỪ SERVER -->
+  <div class="result-section" id="streamVideoResultSection" style="display:none;">
+    <h4>🔍 Kết quả nhận diện video (stream):</h4>
+    <img id="resultStreamVideo" class="result-stream-video" alt="Video stream nhận diện" />
+  </div>
+
+  <footer>
+    <p>© 2025 - Nhóm Hệ Thống Giao Thông Thông Minh</p>
+  </footer>
+
+  <script>
+    // DOM
+    const openCamBtn = document.getElementById("openCamBtn");
+    const closeCamBtn = document.getElementById("closeCamBtn");
+    const cameraStream = document.getElementById("cameraStream");
+    const uploadImgBtn = document.getElementById("uploadImgBtn");
+    const uploadVideoBtn = document.getElementById("uploadVideoBtn");
+    const fileInput = document.getElementById("fileInput");
+    const imageResultSection = document.getElementById("imageResultSection");
+    const resultImage = document.getElementById("resultImage");
+    const streamVideoResultSection = document.getElementById("streamVideoResultSection");
+    const resultStreamVideo = document.getElementById("resultStreamVideo");
+
+    // Mở camera
+    openCamBtn.addEventListener("click", () => {
+      cameraStream.src = "{{ url_for('video_feed') }}";
+      cameraStream.style.display = "block";
+      closeCamBtn.style.display = "inline-block";
+      Swal.fire({ title: 'Đang bật camera...', icon: 'info', timer: 1500, showConfirmButton: false });
+    });
+
+    // Tắt camera
+    closeCamBtn.addEventListener("click", () => {
+      cameraStream.src = "";
+      cameraStream.style.display = "none";
+      closeCamBtn.style.display = "none";
+      Swal.fire({ title: 'Camera đã tắt', icon: 'success', timer: 1200, showConfirmButton: false });
+    });
+
+    // Upload ảnh
+    uploadImgBtn.addEventListener("click", () => {
+      fileInput.accept = "image/*";
+      fileInput.click();
+    });
+
+    // Upload video
+    uploadVideoBtn.addEventListener("click", () => {
+      fileInput.accept = "video/*";
+      fileInput.click();
+    });
+
+    // Khi chọn file --> gửi lên server qua fetch
+    fileInput.addEventListener("change", () => {
+      const file = fileInput.files[0];
+      if (!file) return;
+
+      Swal.fire({ title: 'Đang xử lý file...', text: 'Vui lòng chờ trong giây lát', icon: 'info', showConfirmButton: false });
+
+      const formData = new FormData();
+      formData.append('image', file);
+
+      // Đặt lại ẩn hiển thị các kết quả trước khi show kết quả mới
+      imageResultSection.style.display = 'none';
+      streamVideoResultSection.style.display = 'none';
+      resultImage.src = '';
+      resultStreamVideo.src = '';
+
+      fetch("{{ url_for('upload_api') }}", {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        Swal.close();
+        if (data.uploaded_image) {
+          // Hiển thị ảnh kết quả
+          streamVideoResultSection.style.display = "none";
+          imageResultSection.style.display = "block";
+          resultImage.src = data.uploaded_image;
+        } else if (data.stream_video_url) {
+          // Hiển thị video stream realtime xử lý theo từng frame
+          imageResultSection.style.display = "none";
+          streamVideoResultSection.style.display = "block";
+          resultStreamVideo.src = data.stream_video_url;
+        } else if (data.error) {
+          Swal.fire('Lỗi', data.error, 'error');
+        } else {
+          Swal.fire('Lỗi', 'Phản hồi không hợp lệ từ server', 'error');
+        }
+      })
+      .catch(() => {
+        Swal.close();
+        Swal.fire('Lỗi', 'Upload hoặc xử lý thất bại', 'error');
+      });
+    });
+  </script>
+</body>
+</html>

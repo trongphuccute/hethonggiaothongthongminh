@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20 Điều Luật Giao Thông Phổ Biến</title>
+      <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- CSS của dự án -->
+<link rel="stylesheet" href="css/home.css">
+
+<!-- Bootstrap JS (để dropdown hoạt động) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+        }
+        h1 {
+            margin-top: 80px;
+            color: #222;
+            font-size: 2.3em;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+        .law-card {
+            background: #fff;
+            border-radius: 17px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.11);
+            margin: 45px auto 30px auto;
+            max-width: 850px;
+            padding: 36px 32px 25px 32px;
+        }
+        .law-item + .law-item {
+            margin-top: 18px;
+        }
+        .law-title {
+            font-weight: bold;
+            color: #0065d1;
+            font-size: 1.14em;
+        }
+        .law-detail {
+            margin-top: 3px;
+            color: #333;
+            font-size: 1.02em;
+        }
+        .section-header {
+            font-size: 1.17em;
+            margin-top: 12px;
+            color: #db136e;
+            font-weight: bold;
+        }
+         .title-bienbaocam {
+  margin-top: 100px;
+  text-align: center;
+  font-weight: bold;
+}
+    </style>
+</head>
+<body>
+    <!-- THANH ĐIỀU HƯỚNG -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold fs-4" href="{{ url_for('home') }}">HTNDBBGTTM</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        
+        <!-- NHẬN DẠNG -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="nhanDangDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">NHẬN DẠNG</a>
+          <ul class="dropdown-menu" aria-labelledby="nhanDangDropdown">
+            <li><a class="dropdown-item" href="{{ url_for('nhandien') }}">Quét Biển Báo</a></li>
+          </ul>
+        </li>
+
+        <!-- BIỂN BÁO -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="bienBaoDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">BIỂN BÁO</a>
+          <ul class="dropdown-menu" aria-labelledby="bienBaoDropdown">
+            <li><a href="{{ url_for('bienbaocam') }}" class="dropdown-item">Biển Báo Cấm</a></li>
+            <li><a href="{{ url_for('bbnguyhiem') }}" class="dropdown-item">Biển Báo Nguy Hiểm</a></li>
+            <li><a href="{{ url_for('bbhieulenh') }}" class="dropdown-item">Biển Báo Hiệu Lệnh</a></li>
+            <li><a href="{{ url_for('bbchidan') }}" class="dropdown-item">Biển Báo Chỉ Dẫn và biển báo phụ</a></li>
+            <li><a href="{{ url_for('vkd') }}" class="dropdown-item">Vạch Kẻ Đường</a></li>
+          </ul>
+        </li>
+
+        <!-- TRẮC NGHIỆM -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="tracNghiemDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">TRẮC NGHIỆM</a>
+          <ul class="dropdown-menu" aria-labelledby="tracNghiemDropdown">
+            <li><a class="dropdown-item" href="{{ url_for('quizz') }}">Trắc Nghiệm Xe Máy Cơ Bản</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('quizz2') }}">Trắc Nghiệm Xe Máy Nâng Cao</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('quizz3') }}">Trắc Nghiệm Ô Tô Cơ Bản</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('quizz4') }}">Trắc Nghiệm Ô Tô Nâng Cao</a></li>
+          </ul>
+        </li>
+
+        <!-- ĐIỀU LUẬT & MỨC PHẠT -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="mucPhatDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">ĐIỀU LUẬT & MỨC PHẠT</a>
+          <ul class="dropdown-menu" aria-labelledby="mucPhatDropdown">
+            <li><a class="dropdown-item" href="{{ url_for('dieuluat') }}">Các Điều Luật</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('mucphat') }}">Mức Phạt Phổ Biến</a></li>
+          </ul>
+        </li>
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <h1 class="title-bienbaocam">20 Điều Luật Giao Thông Phổ Biến</h1>
+
+    <div class="law-card">
+        <div class="law-item">
+            <span class="law-title">Công an được phép dừng xe khi nào?</span>
+            <div class="law-detail">Khi phát hiện vi phạm trật tự an toàn giao thông, thực hiện chuyên đề kiểm soát, có mệnh lệnh của cấp trên hoặc nhận tin báo, kiến nghị về hành vi vi phạm pháp luật.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Phải mang giấy tờ gì khi lái xe?</span>
+            <div class="law-detail">Bằng lái xe, đăng ký xe, bảo hiểm xe máy (nếu xe máy) hoặc bảo hiểm trách nhiệm dân sự (ô tô). Từ 2025, giấy tờ tích hợp trên app/dạng điện tử cũng hợp pháp.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Không uống rượu bia khi lái xe.</span>
+            <div class="law-detail">Mức phạt rất cao nếu vi phạm nồng độ cồn, có thể lên đến trên 20 triệu đồng với ô tô và 5 triệu với xe máy, đồng thời tước bằng lái.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Dừng, đỗ xe đúng nơi quy định.</span>
+            <div class="law-detail">Không được dừng đỗ xe ở nơi cấm, trên cầu, hầm, đoạn đường cong, đầu dốc, đường dành cho người đi bộ, trước cổng cơ quan, trường học.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Vượt đèn đỏ, đèn vàng.</span>
+            <div class="law-detail">Vượt đèn đỏ bị phạt nặng và có thể bị tước giấy phép lái xe. Đèn vàng cũng cần dừng lại, chỉ được đi khi đã sát vạch hoặc không thể dừng an toàn.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Chuyển hướng phải bật xi nhan.</span>
+            <div class="law-detail">Đổi hướng hay quay đầu xe phải báo hiệu bằng đèn xi nhan cho các phương tiện cùng chiều hoặc đối diện biết trước.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Chạy quá tốc độ bị phạt nặng.</span>
+            <div class="law-detail">Phạt tùy theo mức độ vượt (5, 10, 20, 35 km/h), tước bằng lái và cộng điểm phạt đối với ô tô.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Đi sai làn đường, phần đường.</span>
+            <div class="law-detail">Đi sai làn bị phạt từ 600.000 đồng (xe máy); nếu gây tai nạn có thể phạt trên 10 triệu đồng.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Không đội mũ bảo hiểm đúng cách.</span>
+            <div class="law-detail">Phải đội mũ bảo hiểm và đúng quy chuẩn khi đi xe máy, xe đạp điện.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Không sử dụng điện thoại khi lái xe.</span>
+            <div class="law-detail">Sử dụng điện thoại khi lái ô tô bị phạt 4–6 triệu đồng.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Không có bằng lái, chưa đủ tuổi, lái xe không chính chủ.</span>
+            <div class="law-detail">Bị phạt tiền và tước quyền sử dụng giấy phép lái xe.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Không thắt dây an toàn trên ô tô.</span>
+            <div class="law-detail">Lái xe và hành khách trên xe phải thắt dây an toàn tại các vị trí có trang bị.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Vượt xe phải báo hiệu và đảm bảo an toàn.</span>
+            <div class="law-detail">Phải vượt bên trái, có tín hiệu đèn hoặc còi, không vượt nơi cấm, tại giao lộ, đường cong, đầu dốc.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Xe tải, xe khách không đi sai giờ quy định, đường cấm.</span>
+            <div class="law-detail">Cấm đi vào đường cấm, khung giờ cấm theo biển báo và lệnh điều tiết giao thông.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Không được mở cửa hoặc bước xuống xe không bảo đảm an toàn.</span>
+            <div class="law-detail">Chủ động quan sát, mở cửa đúng bên, hạn chế mở cửa ven đường đông người.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Quy tắc nhường đường tại vòng xuyến, giao nhau.</span>
+            <div class="law-detail">Chỗ không biển báo phải nhường bên phải, có biển vòng xuyến thì nhường bên trái, đường nhánh nhường đường chính.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Không đi ngược chiều hoặc chạy trên vỉa hè.</span>
+            <div class="law-detail">Vi phạm sẽ bị phạt nặng và tước GPLX.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Không được chở người quá số quy định.</span>
+            <div class="law-detail">Xe máy không chở quá 2 người lớn, ô tô đúng số ghế đăng ký.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Không được để hàng hóa, vật cản rơi vãi gây mất an toàn giao thông.</span>
+            <div class="law-detail">Chở hàng phải gọn gàng, không rơi vãi vật liệu, chất thải trên đường.</div>
+        </div>
+        <div class="law-item">
+            <span class="law-title">Tuân thủ tín hiệu, hiệu lệnh của CSGT, nhân viên điều tiết giao thông.</span>
+            <div class="law-detail">Dừng lại khi được yêu cầu kiểm tra nhưng có quyền phản ánh, khiếu nại nếu nghi ngờ không đúng quy định.</div>
+        </div>
+    </div>
+</body>
+</html>
